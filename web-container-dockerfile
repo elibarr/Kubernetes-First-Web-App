@@ -1,0 +1,3 @@
+FROM nginx
+COPY htdocs /usr/share/nginx/html
+EXPOSE 80/tcp
