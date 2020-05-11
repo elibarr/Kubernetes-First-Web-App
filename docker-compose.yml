@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./web-container
+      dockerfile: web-container-dockerfile
+  db:
+    build:
+      context: ./db-container
+      dockerfile: db-container-dockerfile
+    env_file: ./db-container/db.env
+    expose:
+      - "3306"
+    ports: 
+      - "3306:3306"
