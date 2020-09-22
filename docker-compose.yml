@@ -8,8 +8,12 @@ services:
     build:
       context: ./db-container
       dockerfile: db-container-dockerfile
+    volumes:
+      - ./db-container/db_init_scripts/fill_data.sql:/docker-entrypoint-initdb.d/fill_data.sql
     env_file: ./db-container/db.env
     expose:
       - "3306"
     ports: 
       - "3306:3306"
+
+

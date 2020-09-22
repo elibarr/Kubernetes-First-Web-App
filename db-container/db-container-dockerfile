@@ -1,2 +1,9 @@
 FROM mysql
 EXPOSE 3306
+# ADD fill_data.sql /home/
+# ADD fill_data.sql /docker-entrypoint-initdb.d/fill_data.sql
+
+# https://stackoverflow.com/questions/8055694/how-to-execute-a-mysql-command-from-a-shell-script
+# This doesn't work because sql server doesn't get started until later, when the entrypoint is run. 
+# Use solution above instead to add init script to special folder
+# RUN mysql -u root -ppassword < /home/fill_data.sql

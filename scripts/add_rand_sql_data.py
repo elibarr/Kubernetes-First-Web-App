@@ -26,7 +26,16 @@ redb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="password",
-  database="realestate"
+  # database="realestate"
 ) 
+
+# Open script and execute commands
+f = open("fill_data.sql", "r")
+sql_exec_str = f.read()
+print(sql_exec_str) 
+
 mycursor = redb.cursor()
-mycursor.execute("CREATE TABLE houses (id INT AUTO_INCREMENT PRIMARY KEY, price INT, address VARCHAR(255), city VARCHAR(255), state VARCHAR(255))")
+for command in sql_exec_str.split(";"):
+  print("Command: " + command)
+  # if command:
+  #   mycursor.execute(command)
