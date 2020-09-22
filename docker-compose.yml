@@ -4,6 +4,8 @@ services:
     build:
       context: ./web-container
       dockerfile: web-container-dockerfile
+    volumes:
+      - ./web-container/htdocs:/usr/share/nginx/html
     expose:
       - "80"
     ports:
