@@ -7,6 +7,7 @@ def main():
   f_out = "../db-container/db_init_scripts/fill_data.sql"
   gen_sql_file_realestate(f_out, 200)
   gen_user_pass(f_out, 200)
+  create_sql_users(f_out)
 
 # Write SQL file and fill with real estate info
 def gen_sql_file_realestate(filename, num_houses, overwrite=True):
@@ -75,6 +76,24 @@ def gen_user_pass(filename, num_users):
     sql_cmd += f'VALUES ("{user_data["user"]}", "{user_data["password"]}", "{user_data["email"]}");\n'
 
   f_out.write(sql_cmd + "\n")
+
+# Assume filename is already created and we're just appending to it
+# Creates an app db user for houses, an app db user for users, and an app db master user (for both tables)
+def create_sql_users(filename):
+  sql_cmd = """
+CREATE USER svc_houses@localhost IDENTIFIED BY 'hunter2';
+grant all privileges on houses.* to svc_houses@localhost;
+CREATE USER svc_users@localhost IDENTIFIED BY 'sup3rs3cr3tp@$$';
+grant all privileges on users.* to svc_users@localhost;
+CREATE USER svc_master@localhost IDENTIFIED BY 'foobar';
+grant all privileges on *.* to svc_master*localhost;
+
+"""
+  # Third user has weak password and no hostname control
+
+  f_out = open(filename, "a")
+  f_out.write(sql_cmd)
+
 
 def gen_rand_houses(num_houses):
   # Import city/states:

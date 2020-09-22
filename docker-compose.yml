@@ -4,6 +4,10 @@ services:
     build:
       context: ./web-container
       dockerfile: web-container-dockerfile
+    expose:
+      - "80"
+    ports:
+      - "9005:80"
   db:
     build:
       context: ./db-container
