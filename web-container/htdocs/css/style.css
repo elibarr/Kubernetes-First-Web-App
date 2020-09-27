@@ -1,0 +1,31 @@
+* {
+  font-family: Arial;
+}
+
+/* Nav styling */
+Nav ul li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  /* width: 60px; */
+  /* background-color: #dddddd; */
+}
+
+Nav ul li a.active {
+  background-color: Green;
+  color: white;
+}
+
+Nav ul li a:hover {
+  background-color: darkgray;
+  color: white;
+}
+
+Nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}

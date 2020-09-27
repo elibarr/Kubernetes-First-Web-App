@@ -6,6 +6,7 @@ services:
       dockerfile: web-container-dockerfile
     volumes:
       - ./web-container/htdocs:/usr/share/nginx/html
+      - ./web-container/conf/default.conf:/etc/nginx/conf.d/default.conf
     expose:
       - "80"
     ports:
@@ -21,5 +22,15 @@ services:
       - "3306"
     ports: 
       - "3306:3306"
-
+  php:
+    build:
+      context: ./php-container
+      dockerfile: php-container-dockerfile
+    # image: php:7.4-fpm
+    ports:
+      - 9000:9000
+    volumes:
+      - "./web-container/htdocs:/var/www/html"
+      - "./web-container/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf"
+      - "./web-container/conf/php.ini:/usr/local/etc/php/php.ini"
 

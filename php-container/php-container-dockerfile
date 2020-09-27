@@ -1,0 +1,4 @@
+FROM php:7.4-fpm
+
+# This line necessary because of this: https://github.com/docker-library/php/issues/391
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
